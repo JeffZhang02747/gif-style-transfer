@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 Reiichiro Nakano All Rights Reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+==============================================================================
+-->
+<html lang="en">
+<head>
+<script src="static/bundle.js"></script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+</head>
+<body>
+
+<h2>Gif style transfer inside browser</h2>
+
+<div class="row">
+  <div class="column">
+	<div id="origin-gif-div">
+	<span> input url for the gif to get stylized:</span>
+	<input type="url" size=80 value="https://media.giphy.com/media/cLAxyYaeVIqcQVvGms/giphy.gif" id="origin-gif-url">
+	</div>
+	<img src="" crossorigin="anonymous" id="origin-gif">
+
+	<div id="style-img-div-input">
+	<span> input url for the image to transfer style from:</span>
+	<input type="url" size=80 value="https://d3f1iyfxxz8i1e.cloudfront.net/courses/course_image/9dc3f597fb20.jpg" id="style-img-url">
+	</div>
+	<div id="style-img-div">
+	<img src="" width="265" height="265" crossorigin="anonymous" id="style-img">
+	</div>
+  </div>
+
+  <div class="column">
+  	<div id="transfer-gif-div-input">
+	<button type="button" id="style-button">Click to load gif, style image and start style transfer</button>
+	</div>
+	<div id="transfer-gif-div">
+	</div>
+  </div>
+</div>
+
+
+</body>
+</html>
