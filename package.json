@@ -11,7 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "@tensorflow/tfjs": "^1.2.6",
-    "es6-promisify": "^6.0.1",
     "gif-frames": "^1.0.1",
     "gifshot": "^0.4.5"
   }
