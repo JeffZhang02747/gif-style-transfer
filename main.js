@@ -23,3 +23,50 @@ window.addEventListener('load', async () => {
     transformNet = await transfer.loadSeparableTransformerModel();
     document.getElementById('style-button').onclick = runTransfer;
 });
+
+
+var cors_url = 'https://sheltered-tor-32003.herokuapp.com/';
+
+function getPreview(preview, file_ele){
+    return function(){
+       var file    = file_ele.files[0]; //sames as here
+       var reader  = new FileReader();
+
+       reader.onloadend = function () {
+          preview.src = reader.result;
+       }
+
+       if (file) {
+           reader.readAsDataURL(file); //reads the data as a URL
+       } else {
+           preview.src = "";
+       }
+    }
+}
+
+function setImg(preview, input_ele){
+    return function(){
+        var url = cors_url + input_ele.value;
+        if (preview.src != url){
+            preview.src = url;
+        }
+    }
+}
+
+window.addEventListener('load', async () => {
+    document.getElementById('style-file-upload').onchange = getPreview(document.getElementById('style-img'),
+        document.getElementById('style-file-upload'));
+    document.getElementById('gif-file-upload').onchange = getPreview(document.getElementById('origin-gif'),
+        document.getElementById('gif-file-upload'));
+    document.getElementById('origin-gif-url').onblur = setImg(document.getElementById('origin-gif'), 
+        document.getElementById('origin-gif-url'));
+    document.getElementById('style-img-url').onblur = setImg(document.getElementById('style-img'), 
+        document.getElementById('style-img-url'));
+    const urlParams = new URLSearchParams(window.location.search);
+    const gifurl = urlParams.get('gifurl');
+    if(gifurl.length > 0){
+      document.getElementById('origin-gif-url').value = gifurl;
+    }
+    document.getElementById('origin-gif').src = cors_url + document.getElementById('origin-gif-url').value;
+    document.getElementById('style-img').src = cors_url + document.getElementById('style-img-url').value;
+});

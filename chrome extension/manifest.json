@@ -1,0 +1,28 @@
+{
+  "name": "GIF Stylizer",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "apply style transfer on a GIF",
+  "homepage_url": "https://jeffzhang02747.github.io/gif-style-transfer/",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "src/bg/background.js"
+    ],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_icon": "icons/icon128.ico",
+    "default_title": "browser action demo"
+  },
+  "permissions": [
+    "https://*/*",
+    "http://*/*",
+    "contextMenus"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
