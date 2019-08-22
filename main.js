@@ -72,7 +72,7 @@ window.addEventListener('load', async () => {
     document.getElementById('style-img').src = "static/fall.jpg";
     const urlParams = new URLSearchParams(window.location.search);
     const gifurl = urlParams.get('gifurl');
-    if(gifurl.length > 0){
+    if(gifurl && gifurl.length > 0){
       document.getElementById('origin-gif-url').value = gifurl;
     }
 });
