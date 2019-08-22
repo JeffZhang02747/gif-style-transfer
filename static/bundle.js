@@ -5,12 +5,17 @@ let styleNet;
 let transformNet;
 
 async function runTransfer(){
+    const transfer_span = document.getElementById('transfer-gif-div');
+    transfer_span.innerHTML = "";
+    const spining = document.createElement("img");
+    spining.src = "/static/loading.gif";
+    transfer_span.appendChild(spining);
+
     const style_ratio = 1.0;
     const fetchUrl = document.getElementById('origin-gif').src;
     const animatedImage = document.getElementById('style-img');
     const trans = transfer.gifTransfer(fetchUrl, animatedImage, styleNet, transformNet, style_ratio);
 
-    const transfer_span = document.getElementById('transfer-gif-div');
     document.getElementById('style-button').disabled = true;
     for await(const img of trans){
         transfer_span.innerHTML = "";
@@ -47,7 +52,7 @@ function getPreview(preview, file_ele){
 
 function setImg(preview, input_ele){
     return function(){
-        var url =  input_ele.value;
+        var url = cors_url + input_ele.value;
         if (preview.src != url){
             preview.src = url;
         }
@@ -63,8 +68,14 @@ window.addEventListener('load', async () => {
         document.getElementById('origin-gif-url'));
     document.getElementById('style-img-url').onblur = setImg(document.getElementById('style-img'), 
         document.getElementById('style-img-url'));
-    document.getElementById('origin-gif').src = cors_url + document.getElementById('origin-gif-url').value;
-    document.getElementById('style-img').src = cors_url + document.getElementById('style-img-url').value;
+
+    document.getElementById('origin-gif').src = "static/moving.gif";
+    document.getElementById('style-img').src = "static/fall.jpg";
+    const urlParams = new URLSearchParams(window.location.search);
+    const gifurl = urlParams.get('gifurl');
+    if(gifurl && gifurl.length > 0){
+      document.getElementById('origin-gif-url').value = gifurl;
+    }
 });
 },{"./transfer.js":386}],2:[function(require,module,exports){
 "use strict";
