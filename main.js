@@ -68,8 +68,8 @@ window.addEventListener('load', async () => {
     document.getElementById('style-img-url').onblur = setImg(document.getElementById('style-img'), 
         document.getElementById('style-img-url'));
 
-    document.getElementById('origin-gif').src = "/static/moving.gif";
-    document.getElementById('style-img').src = "/static/fall.jpg";
+    document.getElementById('origin-gif').src = "static/moving.gif";
+    document.getElementById('style-img').src = "static/fall.jpg";
     const urlParams = new URLSearchParams(window.location.search);
     const gifurl = urlParams.get('gifurl');
     if(gifurl.length > 0){
